@@ -3,9 +3,10 @@ cc_library(
     hdrs = ["git.h"],
     srcs = ["git.cc"],
     deps = [
-	    "//third_party:libgit2",
 	    "@com_google_absl//absl/log:log",
 	    "@com_google_absl//absl/status",
+	    "@system_libs//:libgit2",
+	    "@system_libs//:libarchive",
     ],
 )
 
@@ -18,7 +19,6 @@ cc_binary(
 	    "@com_google_absl//absl/flags:parse",
 	    "@com_google_absl//absl/log:check",
 	    "@com_google_absl//absl/log:initialize",
-	    "@system_libs//:libarchive",
     ],
     linkstatic = 1,
 )

@@ -58,3 +58,11 @@ cc_import(
 	"//visibility:public",
     ],
 )
+
+cc_import(
+    name = "libgit2",
+    shared_library = "lib/libgit2.so",
+    visibility = [
+	"//visibility:public",
+    ],
+)
