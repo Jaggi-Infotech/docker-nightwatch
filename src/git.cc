@@ -8,6 +8,9 @@
 #include "git2/errors.h"
 #include "git2/global.h"
 
+#include "archive.h"
+#include "archive_entry.h"
+
 namespace nightwatch {
 namespace {
 

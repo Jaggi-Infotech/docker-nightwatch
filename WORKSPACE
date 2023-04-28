@@ -1,6 +1,15 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+   name = "rules_foreign_cc",
+   strip_prefix = "rules_foreign_cc-8d540605805fb69e24c6bf5dc885b0403d74746a",
+   url = "https://github.com/bazelbuild/rules_foreign_cc/archive/8d540605805fb69e24c6bf5dc885b0403d74746a.zip",
+   sha256 = "727cb0f245f1c08a8ce401f9e5898fea87056cf19ab40fb50b9faf6efc805a7f",
+)
+load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
+rules_foreign_cc_dependencies()
+
+http_archive(
   name = "com_google_absl",
   urls = ["https://github.com/abseil/abseil-cpp/archive/b971ac5250ea8de900eae9f95e06548d14cd95fe.zip"],
   strip_prefix = "abseil-cpp-b971ac5250ea8de900eae9f95e06548d14cd95fe",
@@ -27,18 +36,6 @@ http_archive(
     sha256 = "f6f62c4a1fc9b0a2edb70c77cdb9011b605430eabb4dddbb14d60fb492aea7bb",
 )
 
-http_archive(
-   name = "rules_foreign_cc",
-   strip_prefix = "rules_foreign_cc-8d540605805fb69e24c6bf5dc885b0403d74746a",
-   url = "https://github.com/bazelbuild/rules_foreign_cc/archive/8d540605805fb69e24c6bf5dc885b0403d74746a.zip",
-   sha256 = "727cb0f245f1c08a8ce401f9e5898fea87056cf19ab40fb50b9faf6efc805a7f",
-)
-
-load("@rules_foreign_cc//foreign_cc:repositories.bzl", "rules_foreign_cc_dependencies")
-
-# This sets up some common toolchains for building targets. For more details, please see
-# https://github.com/bazelbuild/rules_foreign_cc/tree/main/docs#rules_foreign_cc_dependencies
-rules_foreign_cc_dependencies()
 
 _ALL_CONTENT = """\
 filegroup(
@@ -56,3 +53,9 @@ http_archive(
     sha256 = "6750e9edbe3c3182cce05b40fe5fe6c665d75cab71b1f4b08e12a1b170cb2917",
 )
 
+# System Libs
+new_local_repository(
+    name = "system_libs",
+    path = "/usr",
+    build_file = "//third_party:system_libs.BUILD",
+)

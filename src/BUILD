@@ -18,6 +18,7 @@ cc_binary(
 	    "@com_google_absl//absl/flags:parse",
 	    "@com_google_absl//absl/log:check",
 	    "@com_google_absl//absl/log:initialize",
+	    "@system_libs//:libarchive",
     ],
     linkstatic = 1,
 )
